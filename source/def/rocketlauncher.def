@@ -52,11 +52,11 @@ entityDef weapon_rocketlauncher
 	"editor_mins"				"-16 -16 0"
 	"editor_maxs"				"16 16 32"
 
-	"editor_usage"				"Rocket Launcher"
+	"editor_usage"				"Rad Rocket"
 
 	"spawnclass"				"idItem"
 	"weaponclass"				"rvWeaponRocketLauncher"
-	"size"						"32 32 32"
+	"size"						"60 60 60"//32
   	"model_view"				"weapon_rocketlauncher_view"
   	"model_view_strogg"			"weapon_rocketlauncher_view_strogg"
   	"model_world"				"weapon_rocketlauncher_world"
@@ -75,18 +75,20 @@ entityDef weapon_rocketlauncher
 	"inv_icon"					"gfx/guis/hud/icons/item_rocket.tga"
 	"inv_name"					"#str_107409"	
 
-	"fireRate"					".8"
-	"reloadRate"				".8"
-	"spread"					"0"
+	"fireRate"					".1" //9
+	"reloadRate"				".1"//9
+	"spread"					"10"//1
 
 	"ammoRegenStep"				"1"
 	"ammoRegenTime"				"1750"
 	
-	"weaponname"				"Rocket Launcher"
-	"def_projectile"			"projectile_rocket"
-	"ammoType"					"ammo_rocketlauncher"
-	"clipSize"					"1"
+	"weaponname"				"rocketlauncher"
+	"def_projectile"			"projectile_rocket"   //"projectile_rocket"
+	"ammoType"					"ammo_rocketlauncher" //"ammo_rocketlauncher"
+	"clipSize"					"3"
 	"ammoRequired"				"1"
+	
+	
 	"gui"						"guis/weapons/rocketlauncher_ammo.gui"
 	"mtr_icon"					"gfx/guis/hud/icons/gun_rocketlauncher"
 
@@ -325,8 +327,8 @@ entityDef projectile_rocket
 	"def_damage"				"damage_rocketDirect"
 	"def_splash_damage"			"damage_rocketSplash"
 																											
-	"speed"						"9"
-	"fuse"						"6"
+	"speed"						"200"
+	"fuse"						"20" //6
 	"push"						"48000"
 	
 							
