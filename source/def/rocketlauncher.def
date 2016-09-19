@@ -77,16 +77,16 @@ entityDef weapon_rocketlauncher
 
 	"fireRate"					".1" //9
 	"reloadRate"				".1"//9
-	"spread"					"10"//1
+	"spread"					"100"//1
 
-	"ammoRegenStep"				"1"
-	"ammoRegenTime"				"1750"
+	"ammoRegenStep"				"1" //1
+	"ammoRegenTime"				"1" //1750
 	
 	"weaponname"				"rocketlauncher"
 	"def_projectile"			"projectile_rocket"   //"projectile_rocket"
 	"ammoType"					"ammo_rocketlauncher" //"ammo_rocketlauncher"
-	"clipSize"					"3"
-	"ammoRequired"				"1"
+	"clipSize"					"3"  //3
+	"ammoRequired"				"1" //3
 	
 	
 	"gui"						"guis/weapons/rocketlauncher_ammo.gui"
@@ -327,7 +327,7 @@ entityDef projectile_rocket
 	"def_damage"				"damage_rocketDirect"
 	"def_splash_damage"			"damage_rocketSplash"
 																											
-	"speed"						"200"
+	"speed"						"9"//900
 	"fuse"						"20" //6
 	"push"						"48000"
 	
