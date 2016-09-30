@@ -132,7 +132,7 @@ private: // FIXME: Temp hack while Eric gets back to me about why GameState.cpp 
 ===============================================================================
 */
 
-class idItemPowerup : public idItem {
+class idItemPowerup : public idItem { // idItemPowerup inherits idItem
 public:
 	CLASS_PROTOTYPE( idItemPowerup );
 
@@ -143,7 +143,7 @@ public:
 
 	void					Spawn();
 	virtual bool			GiveToPlayer( idPlayer *player );
-	virtual void			Think( void );
+	virtual void			Think( void ); //Entity specific gamelogic (AI's and auto firing weapons) that updates what the netity should do per frame
 	virtual bool			Pickup( idPlayer *player );
 
 protected:

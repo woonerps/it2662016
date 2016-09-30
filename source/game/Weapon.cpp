@@ -2523,7 +2523,7 @@ void rvWeapon::Attack( bool altAttack, int num_attacks, float spread, float fuse
 			return;
 		}
 
-		owner->inventory.UseAmmo( ammoType, ammoRequired );
+		owner->inventory.UseAmmo( ammoType, ammoRequired ); // If you remove this, no weapons will have ammo
 		if ( clipSize && ammoRequired ) {
  			clipPredictTime = gameLocal.time;	// mp client: we predict this. mark time so we're not confused by snapshots
 			ammoClip -= 1;
@@ -2590,17 +2590,17 @@ void rvWeapon::Attack( bool altAttack, int num_attacks, float spread, float fuse
 	}
 	
 	// The attack is either a hitscan or a launched projectile, do that now.
-	if ( !gameLocal.isClient ) {
+	if ( !gameLocal.isClient ) {   //Change something here to change the ammount of bullets fired.
 		idDict& dict = altAttack ? attackAltDict : attackDict;
 		power *= owner->PowerUpModifier( PMOD_PROJECTILE_DAMAGE );
 		if ( altAttack ? wfl.attackAltHitscan : wfl.attackHitscan ) {
-			Hitscan( dict, muzzleOrigin, muzzleAxis, num_attacks, spread, power );
+			Hitscan( dict, muzzleOrigin, muzzleAxis, num_attacks, spread, power ); // Copy this line to change ammount of bullet fired with hitscan 
 		} else {
-			LaunchProjectiles( dict, muzzleOrigin, muzzleAxis, num_attacks, spread, fuseOffset, power );
+			LaunchProjectiles( dict, muzzleOrigin, muzzleAxis, num_attacks, spread, fuseOffset, power ); // Copy this line to change ammount of bullet fired with projectiles
 		}
 		//asalmon:  changed to keep stats even in single player 
 		statManager->WeaponFired( owner, weaponIndex, num_attacks );
-		
+		//dgfdgfdgf
 	}
 }
 
