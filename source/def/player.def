@@ -697,8 +697,8 @@ entityDef player_marine
 
 	"pm_jumpheight"						"200" //48
 	"pm_stepsize"						"16"
-	"pm_speed"						"500"  	//DOOM speed was 140 OG speed was 160
-	"pm_walkspeed"						"500" //80
+	"pm_speed"						"300"  	//DOOM speed was 140 OG speed was 160
+	"pm_walkspeed"						"80" //80
 	"pm_crouchspeed"					"80"
 	"pm_noclipspeed"					"270"	
 	"pm_minviewpitch"					"-89"	// looking up
@@ -730,7 +730,7 @@ entityDef player_marine
 
 	// ammo
 	"ammo_railgun"						"0"
-	"ammo_machinegun"					"0"
+	"ammo_machinegun"					"0"//0
 	"ammo_nailgun"						"0"
 	"ammo_blaster"						"-1"
 	"ammo_shotgun"						"0"
@@ -742,7 +742,7 @@ entityDef player_marine
 
 	"max_ammo_blaster"					"-1"
 	"max_ammo_railgun"					"50"
-	"max_ammo_machinegun"					"300"
+	"max_ammo_machinegun"					"300"//300
 	"max_ammo_nailgun"					"300"
 	"max_ammo_shotgun"					"50"
 	"max_ammo_hyperblaster"					"400"
@@ -800,10 +800,10 @@ entityDef player_marine
 
 	// these used to be hard coded values from id
 	// doom 3 SP values, fatal 65, hard 45, soft 30, no fall 7
-	"fatal_fall_delta"					"65"
-	"hard_fall_delta"					"45"
-	"soft_fall_delta"					"30"
-	"no_fall_delta"						"7" 
+	"fatal_fall_delta"					"0"//65
+	"hard_fall_delta"					"0"//45
+	"soft_fall_delta"					"0"//30
+	"no_fall_delta"						"0" //7
 	
 	"def_playerView"					"playerView_marine"
 }

@@ -1669,7 +1669,7 @@ void idPlayer::Init( void ) {
 	// initialize the script variables
 	memset ( &pfl, 0, sizeof( pfl ) );
 	pfl.onGround = true;
-	pfl.noFallingDamage = false;
+	pfl.noFallingDamage = true;
 
 	// Start in idle
 	SetAnimState( ANIMCHANNEL_TORSO, "Torso_Idle", 0 );
@@ -11555,7 +11555,7 @@ void idPlayer::Event_AllowFallDamage( int toggle ) {
 	if( toggle )	{
 		pfl.noFallingDamage = false;
 	} else {
-		pfl.noFallingDamage = true;
+		pfl.noFallingDamage = false; //true
 	}
 
 }

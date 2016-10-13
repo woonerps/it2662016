@@ -19,7 +19,7 @@ public:
 	void					PostSave			( void );
 
 protected:
-
+	//float               
 	float				spreadZoom;
 	bool				fireHeld;
 
@@ -170,7 +170,7 @@ stateResult_t rvWeaponMachinegun::State_Idle( const stateParms_t& parms ) {
 	switch ( parms.stage ) {
 		case STAGE_INIT:
 			if ( !AmmoAvailable ( ) ) {
-				SetStatus ( WP_OUTOFAMMO );
+				SetStatus ( WP_OUTOFAMMO );//WP_OUTOFAMMO
 			} else {
 				SetStatus ( WP_READY );
 			}
