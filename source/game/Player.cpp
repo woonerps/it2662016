@@ -3885,24 +3885,93 @@ void idPlayer::UpdateConditions( void ) {
 	float	fallspeed;
 	float	forwardspeed;
 	float	sidespeed;
+	
+	//test
+	
+		//bool		  quickStep     :1; 
+		//bool        jumpBack      :1;
+		//bool        previouspress :1; 
+	    //bool        lastpress     :1;
+		//bool        currentpress  :1;
+	
+	idVec3   dashspeed;
+	float    dash;
+	float    stepspeed;
+	int     counter;
+	//0 = release 1 = hold 2 = press
+
+	
+    if(pfl.previouspress == 0 && pfl.currentpress == 0){
+		counter = 0;
+	}else if (pfl.previouspress == 1 && pfl.currentpress == 0){
+		counter = 0;
+	}else if(pfl.previouspress == 1 && pfl.currentpress == 1){
+		counter = 1;
+	}else if (pfl.previouspress == 0 && pfl.currentpress == 1){
+		counter = 2;
+	}else if (forwardspeed >0){	
+	}
+
+	
+	//end test
 
 	// minus the push velocity to avoid playing the walking animation and sounds when riding a mover
 	velocity = physicsObj.GetLinearVelocity() - physicsObj.GetPushedLinearVelocity();
+	//test
+	dashspeed = (physicsObj.GetLinearVelocity() - physicsObj.GetPushedLinearVelocity())*30;
+	//test
 	fallspeed = velocity * physicsObj.GetGravityNormal();
 
  	if ( influenceActive ) {
- 		pfl.forward		= false;
- 		pfl.backward	= false;
- 		pfl.strafeLeft	= false;
- 		pfl.strafeRight	= false;
-	} else if ( gameLocal.time - lastDmgTime < 500 ) {
+ 		pfl.forward		  = false;
+ 		pfl.backward	  = false;
+ 		pfl.strafeLeft	  = false;
+ 		pfl.strafeRight	  = false;
+		//test---
+		pfl.quickStep     = false;
+		pfl.jumpBack	  = false;
+		pfl.previouspress = false;
+		pfl.lastpress     = false;
+		pfl.currentpress  = false;
+
+		//end test---
+	}//test --------
+
+	//else if(pfl.previouspress == 0 && pfl.currentpress == 0){
+	//	counter = 0;
+	//}else if (pfl.previouspress == 1 && pfl.currentpress == 0){
+	//	counter = 0;
+	//}else if(pfl.previouspress == 1 && pfl.currentpress == 1){
+	//	counter = 1;
+	//}else if (pfl.previouspress == 0 && pfl.currentpress == 1){
+	//	counter = 2;
+	//}else if (forwardspeed >0){	
+	//}
+	else if ( gameLocal.time - lastDmgTime < 100 ) {
+
+		//else if(pfl.previouspress == 0 && pfl.currentpress == 0){
+	//	counter = 0;
+	//}else if (pfl.previouspress == 1 && pfl.currentpress == 0){
+	//	counter = 0;
+	//}else if(pfl.previouspress == 1 && pfl.currentpress == 1){
+	//	counter = 1;
+	//}else if (pfl.previouspress == 0 && pfl.currentpress == 1){
+	//	counter = 2;
+	//}else if (forwardspeed >0){	
+	//}
+		dash	        = dashspeed * viewAxis[ 0 ];
+		pfl.jumpBack	= pfl.onGround && ( dash < -20.01f );
+	
+	}//end test --------
+	  else if ( gameLocal.time - lastDmgTime < 500 && gameLocal.time - lastDmgTime > 101) { // test
 		forwardspeed	= velocity * viewAxis[ 0 ];
 		sidespeed		= velocity * viewAxis[ 1 ];
 		pfl.forward		= pfl.onGround && ( forwardspeed > 20.01f );
 		pfl.backward	= pfl.onGround && ( forwardspeed < -20.01f );
 		pfl.strafeLeft	= pfl.onGround && ( sidespeed > 20.01f );
 		pfl.strafeRight	= pfl.onGround && ( sidespeed < -20.01f );
- 	} else if ( xyspeed > MIN_BOB_SPEED ) {
+	} 
+	else if ( xyspeed > MIN_BOB_SPEED ) {
 		pfl.forward		= pfl.onGround && ( usercmd.forwardmove > 0 );
 		pfl.backward	= pfl.onGround && ( usercmd.forwardmove < 0 );
 		pfl.strafeLeft	= pfl.onGround && ( usercmd.rightmove < 0 );
@@ -3912,6 +3981,11 @@ void idPlayer::UpdateConditions( void ) {
  		pfl.backward	= false;
  		pfl.strafeLeft	= false;
  		pfl.strafeRight	= false;
+		//test---
+		pfl.jumpBack	  = false;
+		pfl.quickStep     = false;
+		pfl.previouspress = false;
+		//end test---
    	}
 
 	pfl.run		= 1;

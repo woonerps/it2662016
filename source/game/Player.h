@@ -309,6 +309,13 @@ public:
 		bool		backward		:1;
 		bool		strafeLeft		:1;
 		bool		strafeRight		:1;
+		//test
+		bool		quickStep       :1; 
+		bool        jumpBack        :1;
+		bool        previouspress   :1; 
+	    bool        lastpress       :1;
+		bool        currentpress    :1;
+		//test
 		bool		attackHeld		:1;
 		bool		weaponFired		:1;
 		bool		jump			:1;
@@ -327,6 +334,7 @@ public:
 		bool		hearingLoss		:1;
 		bool		objectiveFailed	:1;
 		bool		noFallingDamage :1;
+		
 	} pfl;
 		
 	// inventory
