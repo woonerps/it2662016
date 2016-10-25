@@ -3896,21 +3896,20 @@ void idPlayer::UpdateConditions( void ) {
 	
 	idVec3   dashspeed;
 	float    dash;
-	float    stepspeed;
-	int     counter;
-	//0 = release 1 = hold 2 = press
+	//float    stepspeed;
+	int      counter;    //0 = release 1 = hold 2 = press
 
 	
-    if(pfl.previouspress == 0 && pfl.currentpress == 0){
-		counter = 0;
-	}else if (pfl.previouspress == 1 && pfl.currentpress == 0){
-		counter = 0;
-	}else if(pfl.previouspress == 1 && pfl.currentpress == 1){
-		counter = 1;
-	}else if (pfl.previouspress == 0 && pfl.currentpress == 1){
-		counter = 2;
-	}else if (forwardspeed >0){	
-	}
+    //if(pfl.previouspress == 0 && pfl.currentpress == 0){
+	//	counter = 0;
+	//}else if (pfl.previouspress == 1 && pfl.currentpress == 0){
+	//	counter = 0;
+	//}else if(pfl.previouspress == 1 && pfl.currentpress == 1){
+	//	counter = 1;
+	//}else if (pfl.previouspress == 0 && pfl.currentpress == 1){
+	//	counter = 2;
+	//}else if (forwardspeed >0){	
+	//}
 
 	
 	//end test
@@ -3935,41 +3934,38 @@ void idPlayer::UpdateConditions( void ) {
 		pfl.currentpress  = false;
 
 		//end test---
-	}//test --------
-
-	//else if(pfl.previouspress == 0 && pfl.currentpress == 0){
-	//	counter = 0;
-	//}else if (pfl.previouspress == 1 && pfl.currentpress == 0){
-	//	counter = 0;
-	//}else if(pfl.previouspress == 1 && pfl.currentpress == 1){
-	//	counter = 1;
-	//}else if (pfl.previouspress == 0 && pfl.currentpress == 1){
-	//	counter = 2;
-	//}else if (forwardspeed >0){	
-	//}
-	else if ( gameLocal.time - lastDmgTime < 100 ) {
-
-		//else if(pfl.previouspress == 0 && pfl.currentpress == 0){
-	//	counter = 0;
-	//}else if (pfl.previouspress == 1 && pfl.currentpress == 0){
-	//	counter = 0;
-	//}else if(pfl.previouspress == 1 && pfl.currentpress == 1){
-	//	counter = 1;
-	//}else if (pfl.previouspress == 0 && pfl.currentpress == 1){
-	//	counter = 2;
-	//}else if (forwardspeed >0){	
-	//}
-		dash	        = dashspeed * viewAxis[ 0 ];
-		pfl.jumpBack	= pfl.onGround && ( dash < -20.01f );
-	
-	}//end test --------
-	  else if ( gameLocal.time - lastDmgTime < 500 && gameLocal.time - lastDmgTime > 101) { // test
+	}
+	  else if ( gameLocal.time - lastDmgTime < 500) { // test
+		
 		forwardspeed	= velocity * viewAxis[ 0 ];
 		sidespeed		= velocity * viewAxis[ 1 ];
 		pfl.forward		= pfl.onGround && ( forwardspeed > 20.01f );
 		pfl.backward	= pfl.onGround && ( forwardspeed < -20.01f );
 		pfl.strafeLeft	= pfl.onGround && ( sidespeed > 20.01f );
 		pfl.strafeRight	= pfl.onGround && ( sidespeed < -20.01f );
+		//test --------
+		if(forwardspeed > 0){
+			pfl.currentpress = 1;
+		}
+			if(pfl.previouspress == 0 && pfl.currentpress == 0){
+				counter = 0;
+			}else if (pfl.previouspress == 1 && pfl.currentpress == 0){
+				counter = 0;
+			}else if(pfl.previouspress == 1 && pfl.currentpress == 1){
+				counter = 1;
+			}else if (pfl.previouspress == 0 && pfl.currentpress == 1){
+
+			counter = 2;
+			}
+		
+		if ( gameLocal.time - lastDmgTime < 100 && pfl.previouspress == 0 && pfl.currentpress == 1) {
+			//if ( gameLocal.time - lastDmgTime < 50 && pfl.previouspress == 0 && pfl.currentpress == 1){
+					dash	        = dashspeed * viewAxis[ 0 ];
+			pfl.jumpBack	= pfl.onGround && ( dash < -20.01f );
+			pfl.backward	= pfl.onGround && ( dash < -20.01f );
+			//}
+
+		}//end test --------
 	} 
 	else if ( xyspeed > MIN_BOB_SPEED ) {
 		pfl.forward		= pfl.onGround && ( usercmd.forwardmove > 0 );
