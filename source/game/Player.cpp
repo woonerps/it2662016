@@ -3917,9 +3917,10 @@ void idPlayer::UpdateConditions( void ) {
 	// minus the push velocity to avoid playing the walking animation and sounds when riding a mover
 	velocity = physicsObj.GetLinearVelocity() - physicsObj.GetPushedLinearVelocity();
 	//test
-	dashspeed = (physicsObj.GetLinearVelocity() - physicsObj.GetPushedLinearVelocity())*30;
+	dashspeed = (physicsObj.GetLinearVelocity() - physicsObj.GetPushedLinearVelocity())*1000;
 	//test
 	fallspeed = velocity * physicsObj.GetGravityNormal();
+	
 
  	if ( influenceActive ) {
  		pfl.forward		  = false;
@@ -3944,7 +3945,10 @@ void idPlayer::UpdateConditions( void ) {
 		pfl.strafeLeft	= pfl.onGround && ( sidespeed > 20.01f );
 		pfl.strafeRight	= pfl.onGround && ( sidespeed < -20.01f );
 		//test --------
+		if ( gameLocal.time - lastDmgTime < 10) {
 		if(forwardspeed > 0){
+			pfl.currentpress = 1;
+		} else if(forwardspeed<0){
 			pfl.currentpress = 1;
 		}
 			if(pfl.previouspress == 0 && pfl.currentpress == 0){
@@ -3954,15 +3958,20 @@ void idPlayer::UpdateConditions( void ) {
 			}else if(pfl.previouspress == 1 && pfl.currentpress == 1){
 				counter = 1;
 			}else if (pfl.previouspress == 0 && pfl.currentpress == 1){
-
+				
+				gameLocal.Printf("GOT HERE 33333   ");
 			counter = 2;
 			}
+		}
 		
-		if ( gameLocal.time - lastDmgTime < 100 && pfl.previouspress == 0 && pfl.currentpress == 1) {
+		if (counter = 2) {
 			//if ( gameLocal.time - lastDmgTime < 50 && pfl.previouspress == 0 && pfl.currentpress == 1){
+			
+				gameLocal.Printf("GOT HERE YOOOO");
 					dash	        = dashspeed * viewAxis[ 0 ];
-			pfl.jumpBack	= pfl.onGround && ( dash < -20.01f );
-			pfl.backward	= pfl.onGround && ( dash < -20.01f );
+			pfl.forward		= pfl.onGround && ( dash > 1000.01f );
+			pfl.jumpBack	= pfl.onGround && ( dash < -1000.01f );
+			pfl.backward	= pfl.onGround && ( dash < -1000.01f );
 			//}
 
 		}//end test --------

@@ -44,7 +44,7 @@ void rvSpawner::Spawn( void ){
 
 	maxToSpawn		= spawnArgs.GetInt( "count", "-1" );
 	skipVisible		= spawnArgs.GetBool ( "skipvisible", "1" );
-	spawnWaves		= spawnArgs.GetInt( "waves", "1" );
+	spawnWaves		= spawnArgs.GetInt( "waves", "4" ); //1
 	spawnDelay		= SEC2MS( spawnArgs.GetFloat( "delay", "2" ) );
 	numSpawned		= 0;
 	nextSpawnTime	= 0;

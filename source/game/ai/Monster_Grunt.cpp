@@ -74,6 +74,7 @@ void rvMonsterGrunt::Spawn ( void ) {
 	}	
 }
 
+
 /*
 ================
 rvMonsterGrunt::Save
