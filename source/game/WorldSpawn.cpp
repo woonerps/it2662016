@@ -49,7 +49,7 @@ void idWorldspawn::Spawn( void ) {
 			thread->DelayedStart( 0 );
 		}
 	}
-
+	
 	// call any functions specified in worldspawn
 	kv = spawnArgs.MatchPrefix( "call" );
 	while( kv != NULL ) {

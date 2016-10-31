@@ -3894,22 +3894,10 @@ void idPlayer::UpdateConditions( void ) {
 	    //bool        lastpress     :1;
 		//bool        currentpress  :1;
 	
-	idVec3   dashspeed;
+	
 	float    dash;
 	//float    stepspeed;
 	int      counter;    //0 = release 1 = hold 2 = press
-
-	
-    //if(pfl.previouspress == 0 && pfl.currentpress == 0){
-	//	counter = 0;
-	//}else if (pfl.previouspress == 1 && pfl.currentpress == 0){
-	//	counter = 0;
-	//}else if(pfl.previouspress == 1 && pfl.currentpress == 1){
-	//	counter = 1;
-	//}else if (pfl.previouspress == 0 && pfl.currentpress == 1){
-	//	counter = 2;
-	//}else if (forwardspeed >0){	
-	//}
 
 	
 	//end test
@@ -3917,7 +3905,12 @@ void idPlayer::UpdateConditions( void ) {
 	// minus the push velocity to avoid playing the walking animation and sounds when riding a mover
 	velocity = physicsObj.GetLinearVelocity() - physicsObj.GetPushedLinearVelocity();
 	//test
-	dashspeed = (physicsObj.GetLinearVelocity() - physicsObj.GetPushedLinearVelocity())*1000;
+	idVec3   dashspeed;
+	dashspeed = viewAxis[0]*1000;
+
+	//gameLocal.Printf("dashspeed = %d,%d,%d\n",dashspeed.x,dashspeed.y,dashspeed.z);
+	
+
 	//test
 	fallspeed = velocity * physicsObj.GetGravityNormal();
 	
@@ -3945,7 +3938,7 @@ void idPlayer::UpdateConditions( void ) {
 		pfl.strafeLeft	= pfl.onGround && ( sidespeed > 20.01f );
 		pfl.strafeRight	= pfl.onGround && ( sidespeed < -20.01f );
 		//test --------
-		if ( gameLocal.time - lastDmgTime < 10) {
+		if ( gameLocal.time - lastDmgTime < 300) {
 		if(forwardspeed > 0){
 			pfl.currentpress = 1;
 		} else if(forwardspeed<0){
@@ -3964,14 +3957,16 @@ void idPlayer::UpdateConditions( void ) {
 			}
 		}
 		
-		if (counter = 2) {
+		if (counter = 2 && pfl.previouspress == 0) {
 			//if ( gameLocal.time - lastDmgTime < 50 && pfl.previouspress == 0 && pfl.currentpress == 1){
 			
 				gameLocal.Printf("GOT HERE YOOOO");
 					dash	        = dashspeed * viewAxis[ 0 ];
-			pfl.forward		= pfl.onGround && ( dash > 1000.01f );
-			pfl.jumpBack	= pfl.onGround && ( dash < -1000.01f );
-			pfl.backward	= pfl.onGround && ( dash < -1000.01f );
+					
+			//pfl.forward		= pfl.onGround && ( dash > 1000.01f );
+			//pfl.jumpBack	= pfl.onGround && ( dash < -1000.01f );
+			pfl.backward	= pfl.onGround && ( dash < -20.01f );
+			GetPlayerPhysics()->ApplyImpulse(100, firstPersonViewOrigin,dashspeed);
 			//}
 
 		}//end test --------

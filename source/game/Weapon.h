@@ -362,6 +362,7 @@ public:
 	idVec3							flashlightViewOffset;	
 
 	// ammo management
+	//int								i;
 	int								ammoType;
 	int								ammoRequired;		// amount of ammo to use each shot.  0 means weapon doesn't need ammo.
 	int								clipSize;			// 0 means no reload

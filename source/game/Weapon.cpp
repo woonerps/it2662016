@@ -2595,8 +2595,8 @@ void rvWeapon::Attack( bool altAttack, int num_attacks, float spread, float fuse
 		power *= owner->PowerUpModifier( PMOD_PROJECTILE_DAMAGE );
 		if ( altAttack ? wfl.attackAltHitscan : wfl.attackHitscan ) {
 			Hitscan( dict, muzzleOrigin, muzzleAxis, num_attacks, spread, power ); // Copy this line to change ammount of bullet fired with hitscan
-			Hitscan( dict, muzzleOrigin, muzzleAxis, num_attacks, spread, power );
-			Hitscan( dict, muzzleOrigin, muzzleAxis, num_attacks, spread, power );
+			//Hitscan( dict, muzzleOrigin, muzzleAxis, num_attacks, spread, power );
+			//Hitscan( dict, muzzleOrigin, muzzleAxis, num_attacks, spread, power );
 		} else {
 			LaunchProjectiles( dict, muzzleOrigin, muzzleAxis, num_attacks, spread, fuseOffset, power ); // Copy this line to change ammount of bullet fired with projectiles
 		}
