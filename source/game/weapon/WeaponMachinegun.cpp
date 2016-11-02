@@ -231,7 +231,7 @@ stateResult_t rvWeaponMachinegun::State_Fire ( const stateParms_t& parms ) {
 				Attack ( true, 40, 3, 0, 5.0f ); // Change these variables to edit x,d bullet fired, spread, y, and power or somethin
 			//	Attack ( true, 100, spread, 0, 5.0f );
 			
-				fireHeld = true;
+				//fireHeld = true;
 			} else {
 				nextAttackTime = gameLocal.time + (fireRate * owner->PowerUpModifier ( PMOD_FIRERATE ));
 				Attack ( false, 1, spread, 0, 1.0f );
